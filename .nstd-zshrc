@@ -31,13 +31,13 @@ if [ ! -f "$ANTIGEN" ]; then
 fi
 
 #check if .zshrc need update modify time, or this file change can't be updated
-c_file=$0
+c_file=~/`basename $0`
 get_current_modify_time() {
 	stat -x $c_file | grep Modify | sed 's/Modify: //g;s/ /_/g'
 }
 
 c_time=`get_current_modify_time`
-z_ts=.z_timestamp
+z_ts=~/.z_timestamp
 if [ ! -f $z_ts ]; then
 	touch $z_ts
 fi
