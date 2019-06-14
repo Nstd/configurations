@@ -30,16 +30,46 @@ if [ ! -f "$ANTIGEN" ]; then
 	mv "$TMPFILE" "$ANTIGEN"
 fi
 
+#check if .zshrc need update modify time, or this file change can't be updated
+c_file=$0
+get_current_modify_time() {
+	stat -x $c_file | grep Modify | sed 's/Modify: //g;s/ /_/g'
+}
+
+c_time=`get_current_modify_time`
+z_ts=.z_timestamp
+if [ ! -f $z_ts ]; then
+	touch $z_ts
+fi
+old_time="`cat $z_ts`"
+#echo "c_time=$c_time, old_time=$old_time"
+if [ "$c_time" != "$old_time" ] && [ -f ~/.zshrc ]; then
+	echo "$c_time" > $z_ts
+	touch ~/.zshrc
+fi
+
 source "$ANTIGEN"
 
 antigen use oh-my-zsh
 
 # auto suggestion
 antigen bundle zsh-users/zsh-autosuggestions
+# shell syntax highlight
+#antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle zdharma/fast-syntax-highlighting
+# calculator in console
+antigen bundle arzzen/calc.plugin.zsh
+# make man page colored
+antigen bundle ael-code/zsh-colored-man-pages
+# easy create custom zsh plugin
+antigen bundle darrenbutcher/plugin
+# a progress spinner for zsh scripts, !!!mac use brew to install
+#antigen bundle molovo/revolver
+# use console to open atom
+#antigen bundle seanjamesking/atom_plugin.zsh
 
 antigen theme ys
 
 antigen apply
 
-#bindkey '^i' beginning-of-line
-bindkey '^E' end-of-line                     
+
