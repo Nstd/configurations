@@ -1,0 +1,7 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_1='/Applications/Android Studio.app/Contents/plugins/android/lib/templates/activities'
+let g:netrw_dirhist_2='/Applications/Android Studio.app/Contents/plugins/android/lib/templates/activities/common'
+let g:netrw_dirhist_3='/Applications/Android Studio.app/Contents/plugins/android/lib/templates/gradle-projects/HztComponentModule'
+let g:netrw_dirhist_4='/Applications/Android Studio.app/Contents/plugins/android/lib/templates/gradle-projects/NewAndroidModule'
+let g:netrw_dirhist_5='/Users/maoting'
