@@ -33,7 +33,8 @@ fi
 #check if .zshrc need update modify time, or this file change can't be updated
 c_file=~/`basename $0`
 get_current_modify_time() {
-	stat -x $c_file | grep Modify | sed 's/Modify: //g;s/ /_/g'
+	op=$([ `uname` = 'Darwin' ] && echo " -x " || echo "")
+	stat $op $c_file | grep Modify | sed 's/Modify: //g;s/ /_/g'
 }
 
 c_time=`get_current_modify_time`
